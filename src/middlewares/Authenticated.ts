@@ -16,7 +16,7 @@ export default function Authenticate(
   const authHeader = req.headers.authorization;
 
   if (!authHeader) {
-    throw new AppError('JWT Token is missing.');
+    throw new AppError('JWT Token is missing.', 401);
   }
   // BEARER DPS O TOKEN
   const token = authHeader.split(' ')[1];
@@ -30,6 +30,6 @@ export default function Authenticate(
     };
     next();
   } catch (error) {
-    throw new AppError('Invalid JWT Token');
+    throw new AppError('Invalid JWT Token', 401);
   }
 }
